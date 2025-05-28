@@ -9,7 +9,7 @@ import { FaWhatsappSquare } from "react-icons/fa";
 const ContactForm = () => {
   return (
     <>
-      <div className="relative mt-5 w-full xl:w-[80%] mx-auto">
+      <div className="relative mt-5 w-full  xl:w-[40%] mx-auto">
         <div className="bg-white   border rounded-lg w-full p-7 md:p-10">
          
           <form className="flex flex-col gap-5 mt-5">

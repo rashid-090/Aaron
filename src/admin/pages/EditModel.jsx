@@ -85,7 +85,7 @@ const EditModel = () => {
                 setValue("specificationsHeading", modelData.specifications.heading);
                 setValue("specificationsIntro", modelData.specifications.introText);
 
-                setValue('categoryId', modelData.categoryId._id);
+                setValue('categoryId', modelData.categoryId?._id);
                 setValue('mainContent', modelData.description.mainContent);
                 setValue('mainFeatureContent', modelData.features.mainContent);
                 // Set other form values as needed
@@ -626,7 +626,7 @@ const EditModel = () => {
                                             Description*
                                         </label>
                                         <textarea
-                                            rows="3"
+                                            rows="2"
                                             value={feature.description}
                                             onChange={(e) => updateFeature(index, 'description', e.target.value)}
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
@@ -695,8 +695,8 @@ const EditModel = () => {
                                             </button>
                                         )}
                                     </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    {/*  */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-gray-700 font-semibold mb-2">
                                                 Title*
@@ -704,20 +704,7 @@ const EditModel = () => {
                                             <input
                                                 type="text"
                                                 value={spec.title}
-                                                onChange={(e) => updateSpecification(index, 'title', e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
-                                                required
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-gray-700 font-semibold mb-2">
-                                                Value*
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={spec.value}
-                                                onChange={(e) => updateSpecification(index, 'value', e.target.value)}
+                                                onChange={(e) => updateSpecification(index, 'value', e.target.value)} 
                                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
                                                 required
                                             />
@@ -725,6 +712,24 @@ const EditModel = () => {
 
 
                                     </div>
+
+                                    <div className="mt-4">
+                                        <label className="block text-gray-700 font-semibold mb-2">
+                                            Value*
+                                        </label>
+                                        <textarea
+                                            rows="2"
+                                            value={spec.value}
+                                            onChange={(e) => updateSpecification(index, 'value', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    {/*  */}
+
+
+
+                                    
                                 </div>
                             ))}
 

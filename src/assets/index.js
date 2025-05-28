@@ -1,4 +1,22 @@
 import AaronLogo from './images/logo/logo_aaron copy.png'
+import AaronLogoBlack from './images/logo/aaron-logo-black.png'
+import AaronLogoYellowWhite from './images/logo/logo-yellow-white.png'
+
+
+// Banner Images
+import Banner1 from './images/banner/aaron-banner1.webp'
+import Banner2 from './images/banner/aaron-banner2.webp'
+import Banner3 from './images/banner/aaron-banner3.webp'
+import Banner4 from './images/banner/aaron-banner4.webp'
+import Banner5 from './images/banner/aaron-banner5.webp'
+import Banner6 from './images/banner/aaron-banner6.webp'
+import Banner7 from './images/banner/aaron-banner7.webp'
+import Banner8 from './images/banner/aaron-banner8.webp'
+import Banner9 from './images/banner/aaron-banner9.webp'
+import AboutBanner from './images/banner/about-banner.jpg'
+
+import ContactSection1 from './images/banner/contact-section1.webp'
+
 import Liftvid from './video/lift.mp4'
 import LiftBanner from './video/lift-banner.mp4'
 import LiftvidPost from './images/logo/vidposter.webp'
@@ -66,6 +84,10 @@ import MRLElevators from './images/lift/mrl-elevators.jpg'
 import AbousUsImage from './images/lift/about-us-image.webp'
 
 
+// Offer Images
+import OfferImage1 from './images/offers/offer1.webp'
+
+
 import Lft1 from './images/lift/lift1.webp'
 import Lft2 from './images/lift/lift2.webp'
 import Lft3 from './images/lift/lift3.webp'
@@ -100,6 +122,7 @@ export {
     Liftvid,
     LiftvidPost,
     Lft1, Lft2, Lft3, Lft4, Lft5, Lft6, Lft7, Lft8, commlift, mainlift,
+    AaronLogoBlack,
     ClintLogo,
     Servhome, Servpassanger, Servcommercial, Servstructure, Servcapsule, Servglass, Servcar, Servhospital, Servfreight, Servbubm, Servkitchen, ServMRL,
     HomeElevatorImage, HomeElevatorImage2, HomeElevatorImage3, HomeElevatorImage4, HomeElevatorImage5,
@@ -118,5 +141,20 @@ export {
     LiftBanner,
     AbousUsImage,
     AaronLogoWhite,
-    
+    AaronLogoYellowWhite,
+
+    Banner1,
+    Banner2,
+    Banner3,
+    Banner4,
+    Banner5,
+    Banner6,
+    Banner7,
+    Banner8,
+    Banner9,
+
+    ContactSection1,
+
+    OfferImage1,
+    AboutBanner
 }

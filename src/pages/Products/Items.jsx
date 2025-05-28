@@ -86,13 +86,13 @@ const CommercialElevators = () => {
         </p>
       </div>
 
-      <section className="bg-gradient-to-r from-mainbtn to-mainbtnhrv2 xl:mt-10 py-10 mt-10 xl:py-24 text-center rounded-2xl">
+      <section className="bg-gradient-to-r from-mainbtn pl-5 md:p-0 to-mainbtnhrv2 xl:mt-10 py-10 mt-10 xl:py-24 text-left md:text-center rounded-2xl">
         <div className="w-12/12 px-2 xl:px-2 xl:w-10/12 mx-auto text-white">
           <h2 className="text-2xl xl:text-6xl font-normal capitalize">
             {tabContent[0].content.banner.heading}
           </h2>
-          <div className="relative w-[90%] md:w-[70%] mx-auto mt-3">
-            <p className="text-sm text-justify md:text-center tracking-wide font-light">
+          <div className="relative w-[90%] md:w-[70%] md:mx-auto mt-3">
+            <p className="text-sm text-left md:text-center tracking-wide font-light">
               {tabContent[0].content.banner.text}
             </p>
           </div>
@@ -116,7 +116,7 @@ const CommercialElevators = () => {
         {tabContent[1].content.featuresList.map((feature, index) => (
           <div
             key={index}
-            className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition flex md:flex-col text-start md:text-center"
+            className="bg-[#eee]  p-6 rounded-lg shadow-md hover:shadow-lg transition flex md:flex-col text-start md:text-center"
           >
             <div className="text-mainbtn mb-4 flex h-full items-center justify-center">
             <IoMdCheckmarkCircleOutline  size={30}/> 
@@ -136,7 +136,7 @@ const CommercialElevators = () => {
               <h4 className="text-xl font-semibold text-black mb-3">
                 {feature.title}
               </h4>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+              <p className="text-maingray text-sm">{feature.description}</p>
             </div>
           </div>
         ))}
@@ -159,12 +159,12 @@ const CommercialElevators = () => {
         {tabContent[2].content.specsList.map((spec, index) => (
           <div
             key={index}
-            className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition"
+            className="bg-[#eee] p-6 rounded-lg shadow-md hover:shadow-lg transition"
           >
             <h4 className="text-xl font-semibold text-mainbtn mb-2">
               {spec.category}
             </h4>
-            <p className="text-gray-600">{spec.details}</p>
+            <p className="text-black">{spec.details}</p>
           </div>
         ))}
       </div>
@@ -196,7 +196,7 @@ const CommercialElevators = () => {
 
   return (
     <>
-      <div className="pt-28 px-2 md:px-0 md:w-9/12 mx-auto w-full">
+      <div className="pt-28 px-2 md:px-0 md:w-9/12 mx-auto w-full text-black">
         <div className="text-center my-10 space-y-3">
           <h1 className="text-3xl sm:text-4xl xl:text-6xl font-normal uppercase">
             {pageHeader.title}
@@ -224,7 +224,7 @@ const CommercialElevators = () => {
         </div>
 
         {/* Animated Content Area */}
-        <div className="mt-10 overflow-hidden">
+        <div className="mt-10 overflow-hidden mb-20">
           <AnimatePresence custom={direction} mode="popLayout">
             <motion.div
               key={activeTab}

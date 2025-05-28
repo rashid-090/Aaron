@@ -130,6 +130,8 @@ function AdminRoutes() {
           <Route path="/add-model" element={<AddModel />} />
           <Route path="/models" element={<Models />} />
           <Route path="/models/:id/edit" element={<EditModel />} />
+          <Route path="/products/:category/:id" element={<Modal />} />
+
           <Route path="*" element={<div>not found</div>} />
         </Route>
       </Routes>

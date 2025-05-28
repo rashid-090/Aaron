@@ -546,34 +546,6 @@ const AddModel = () => {
                                                 required
                                             />
                                         </div>
-
-                                        <div>
-                                            <label className="block text-gray-700 font-semibold mb-2">
-                                                Icon ( PNG only)
-                                            </label>
-                                            <input
-                                                type="file"
-                                                accept=".png"
-                                                onChange={(e) => handleFeatureIconChange(index, e)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
-                                            />
-                                            {feature.iconPreview && (
-                                                <div className="mt-2 relative inline-block">
-                                                    <img
-                                                        src={feature.iconPreview}
-                                                        alt={`Feature Icon ${index}`}
-                                                        className="h-12 w-12 object-contain"
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => removeFeatureIcon(index)}
-                                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
-                                                    >
-                                                        ×
-                                                    </button>
-                                                </div>
-                                            )}
-                                        </div>
                                     </div>
 
                                     <div className="mt-4">
@@ -651,7 +623,9 @@ const AddModel = () => {
                                         )}
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    {/*  */}
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-gray-700 font-semibold mb-2">
                                                 Title*
@@ -665,47 +639,24 @@ const AddModel = () => {
                                             />
                                         </div>
 
-                                        <div>
-                                            <label className="block text-gray-700 font-semibold mb-2">
-                                                Value*
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={spec.value}
-                                                onChange={(e) => updateSpecification(index, 'value', e.target.value)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
-                                                required
-                                            />
-                                        </div>
 
-                                        <div>
-                                            <label className="block text-gray-700 font-semibold mb-2">
-                                                Icon (PNG only)
-                                            </label>
-                                            <input
-                                                type="file"
-                                                accept=".png"
-                                                onChange={(e) => handleSpecificationIconChange(index, e)}
-                                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
-                                            />
-                                            {spec.iconPreview && (
-                                                <div className="mt-2 relative inline-block">
-                                                    <img
-                                                        src={spec.iconPreview}
-                                                        alt={`Spec Icon ${index}`}
-                                                        className="h-12 w-12 object-contain"
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => removeSpecificationIcon(index)}
-                                                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
-                                                    >
-                                                        ×
-                                                    </button>
-                                                </div>
-                                            )}
-                                        </div>
                                     </div>
+
+                                    <div className="mt-4">
+                                        <label className="block text-gray-700 font-semibold mb-2">
+                                            Value*
+                                        </label>
+                                        <textarea
+                                            rows="2"
+                                            value={spec.value}
+                                            onChange={(e) => updateSpecification(index, 'value', e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-mainbtn"
+                                            required
+                                        ></textarea>
+                                    </div>
+
+
+                                    {/*  */}
                                 </div>
                             ))}
 

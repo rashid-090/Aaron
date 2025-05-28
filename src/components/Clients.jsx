@@ -1,5 +1,5 @@
 import React from 'react';
-import { AaronLogo } from '../assets'
+import { AaronLogo, AaronLogoBlack } from '../assets'
 import Marquee from "react-fast-marquee";
 
 const Allclients = [
@@ -31,7 +31,7 @@ const Allclients = [
 const Clients = () => {
     return (
         <>
-            <Marquee className='' gradient="true" gradientColor='white'>
+            <Marquee className='' gradient="true" gradientColor='#fff'>
                 {Allclients?.map((clt, i) => (
                     <div key={i}>
                         <img key={i} className='h-10 xl:h-full xl:aspect-video object-contain mx-5 xl:mx-10 2xl:mx-20' src={clt.clnt} alt="" />

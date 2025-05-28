@@ -7,10 +7,14 @@ import { Lft5, Lft6, Lft7, Lft8, commlift } from "../assets";
 
 import AllProducts from '../components/modalsdata';
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaCircleArrowRight } from "react-icons/fa6";
+
 
 
 // Custom Previous Arrow
-const PrevArrow = ({ onClick }) => (
+const PrevArrow = ({ onClick, }) => (
   <button
     className="absolute right-12 z-20 -bottom-14 transform -translate-y-1/2  p-2 px-3 rounded-lg shadow-lg bg-mainbtn text-white"
     onClick={onClick}
@@ -29,9 +33,11 @@ const NextArrow = ({ onClick }) => (
   </button>
 );
 
-const Products = ({limit=4}) => {
+const Products = ({ limit = 100, onView, column = "3" }) => {
   const navigate = useNavigate()
   const [descriptionLength, setDescriptionLength] = useState(200);
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
 
   const settings = {
@@ -91,41 +97,50 @@ const Products = ({limit=4}) => {
 
   return (
     <>
-      <div className="mt-5 mb-10 hidden md:grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 relative  ">
+      <div className={`mt-5 mb-10 hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${column} relative  `}>
 
         {AllProducts.slice(0, limit).map((prod, i) => (
-          <div key={i} className="p-5 z-10 ">
-            <div className="relative group overflow-hidden  bg-gray-100 shadow rounded-lg text-left cursor-pointer "
-              onClick={() => navigate(`/products/${prod.id}/${prod.id}`)}
-            >
-              {/* Product Image */}
-              <img
-                className="object-cover w-full h-[20rem] md:h-[30rem]  transition-transform duration-500 group-hover:scale-110  "
-                src={prod.galleryImages[0].src}
-                alt={prod.galleryImages[0].alt}
-              />
-              <div className="opacity-0 group-hover:opacity-100 absolute w-full h-full top-0 left-0 inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+          <motion.section
+            ref={ref}
+            initial={{ opacity: 0, scale: 0.95, rotateX: -10 }}
+            animate={inView || onView ? { opacity: 1, scale: 1, rotateX: 0 } : {}}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className=" pb-10 pt-10 text-white container mx-auto"
+          >
+
+            <div key={i} className="p-5 -z-[500] ">
+              <div className="relative group overflow-hidden  bg-secondarygray shadow rounded-lg text-left cursor-pointer hover:scale-110 duration-200 "
+                onClick={() => navigate(`/products/${prod.id}/${prod.id} `)}
+              >
+                {/* Product Image */}
+                <img
+                  className="object-cover w-full h-[20rem] md:h-[30rem]  transition-transform duration-500   "
+                  src={prod.galleryImages[0].src}
+                  alt={prod.galleryImages[0].alt}
+                />
+                <div className="opacity-0 group-hover:opacity-100 absolute w-full h-full top-0 left-0 inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent 0 transition-opacity duration-500 flex flex-col justify-end p-4 xl:p-8 text-white ">
+                  <h3 className="text-lg xl:text-xl xl:pr-40  font-medium text-mainbtn uppercase">
+                    {prod.pageHeader.title}
+                  </h3>
+                  <p className="text-[10px] md:text-xs my-1 md:my-3 ">
+                    {prod.pageHeader.description.length > descriptionLength
+                      ? `${prod.pageHeader.description.slice(0, descriptionLength)}...`
+                      : prod.pageHeader.description}
+                  </p>
+                  <button
+                    onClick={() => navigate(`/products/${prod.id}/${prod.id}`)}
+                    className="w-fit border hover:border-mainbtn capitalize hover:bg-mainbtn px-3 py-1 text-[8px] md:text-sm opacity-0 group-hover:opacity-100 transform translate-y-5 group-hover:translate-y-0 transition-all duration-500 ease-in-out"
+                  >
+                    Learn More
+                  </button>
+                </div>
 
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent 0 transition-opacity duration-500 flex flex-col justify-end p-4 xl:p-8 text-white ">
-                <h3 className="text-lg xl:text-4xl xl:pr-40 font-medium text-mainbtn uppercase">
-                  {prod.pageHeader.title}
-                </h3>
-                <p className="text-[10px] md:text-xs my-1 md:my-3 ">
-                  {prod.pageHeader.description.length > descriptionLength
-                    ? `${prod.pageHeader.description.slice(0, descriptionLength)}...`
-                    : prod.pageHeader.description}
-                </p>
-                <button
-                  onClick={() => navigate(`/products/${prod.id}/${prod.id}`)}
-                  className="w-fit border hover:border-mainbtn capitalize hover:bg-mainbtn px-3 py-1 text-[10px] md:text-sm opacity-0 group-hover:opacity-100 transform translate-y-5 group-hover:translate-y-0 transition-all duration-500 ease-in-out"
-                >
-                  Learn More
-                </button>
-              </div>
-
             </div>
-          </div>
+          </motion.section>
         ))}
       </div>
 
@@ -143,7 +158,7 @@ const Products = ({limit=4}) => {
 
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent 0 transition-opacity duration-500 flex flex-col justify-end p-4 xl:p-8 text-white">
-                  <h3 className="text-lg xl:text-2xl xl:pr-40 font-medium text-mainbtn text-nowrap  uppercase">
+                  <h3 className="text-lg xl:text-2xl xl:pr-40 font-medium text-mainbtn text-nowrap w-[100%] overflow-hidden truncate  uppercase">
                     {prod.pageHeader.title}
                   </h3>
                   <p className="text-[10px] md:text-xs my-1 md:my-3 ">
@@ -159,6 +174,7 @@ const Products = ({limit=4}) => {
             </div>
           ))}
         </Slider>
+
       </div>
     </>
   );
