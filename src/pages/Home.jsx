@@ -90,7 +90,7 @@ const Home = () => {
 
       {/* <ParallaxFirst subTitle={'Premium Elevators in India.'} image={Banner5} /> */}
 
-      <section className="relative w-full   h-[70vh] md:h-[60vh] xl:h-screen overflow-hidden">
+      <section className="relative w-full   h-full overflow-hidden">
         <PortfolioFullscreenSlider />
 
 
