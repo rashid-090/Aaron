@@ -1,48 +1,62 @@
-import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const ParallaxFixedBg = ({ image, title, subTitle, description }) => {
   const containerRef = useRef();
+  const contentRef = useRef();
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Check if mobile on component mount
   useEffect(() => {
-    // iOS detection
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is typically tablet breakpoint
+    };
     
-    if (isIOS) {
-      // For iOS devices, we'll use a different approach
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
-        containerRef.current.style.backgroundImage = `url(${image})`;
-        containerRef.current.classList.add('bg-cover', 'bg-center');
-      };
-    } else {
-      // For other devices, use the fixed background
-      containerRef.current.style.backgroundImage = `url(${image})`;
-      containerRef.current.classList.add('bg-fixed', 'bg-cover', 'bg-center');
-    }
-  }, [image]);
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  // Set up scroll-based animations
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Create transforms with mobile limitation
+  const scale = useTransform(scrollYProgress, [0, 1], 
+    isMobile ? [0.9, 1] : [0.7, 1.2]); // Only scale up to 1 (100%) on mobile
+  
+  const y = useTransform(scrollYProgress, [0, 1], 
+    isMobile ? ["30%", "-20%"] : ["20%", "-20%"]); // Less movement on mobile
 
   return (
     <div
       ref={containerRef}
       className="relative h-[100vh] md:h-screen flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: isMobile ? 'scroll' : 'fixed' // Disable fixed bg on mobile
+      }}
     >
       {/* Black overlay */}
       <div className="absolute inset-0 bg-black/60 z-0"></div>
 
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center h-full text-white flex-col text-center w-full">
+      {/* Content with scale effect */}
+      <motion.div 
+        ref={contentRef}
+        style={{
+          scale,
+          y
+        }}
+        className="relative z-10 flex items-center justify-center h-full text-white flex-col text-center w-full px-4"
+      >
         <div className="h-[90vh] flex flex-col justify-end items-center w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center flex flex-col items-center w-full px-4"
-          >
+          <div className="text-center flex flex-col md:items-center w-full">
             {title && (
-              <h2 className="text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl font-normal uppercase text-left md:text-center">
+              <h2 className="text-3xl sm:text-5xl xl:text-6xl 2xl:text-7xl font-normal uppercase text-left md:text-center">
                 {title}
               </h2>
             )}
@@ -58,9 +72,9 @@ const ParallaxFixedBg = ({ image, title, subTitle, description }) => {
                 <p className="text-sm text-left md:text-center">{description}</p>
               </div>
             )}
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -101,7 +101,7 @@ const Home = () => {
 
 
       <section className="  bg-white   py-10 xl:py-16 text-left sm:text-center ">
-        <div className="w-11/12 xl:w-10/12 mx-auto text-white container ">
+        <div className="w-11/12 xl:w-10/12 mx-auto text-white md:container ">
           <ContactForm2 />
         </div>
       </section>
@@ -290,7 +290,7 @@ const Home = () => {
 
 
 
-        <section className="bg-secondarygray py-10 xl:pt-20 container mx-auto">
+        <section className="bg-secondarygray py-10 xl:pt-20 w-[90%] xl:w-[98%] mx-auto">
           <motion.div
             className="h-full flex flex-col justify-center text-center"
             initial={{ opacity: 0, y: -50 }}
@@ -357,6 +357,8 @@ const Home = () => {
 
         </section>
 
+  
+
         {/* <section className="bg-white py-10">
         <div className="w-11/12 xl:w-10/12 mx-auto">
            
@@ -400,7 +402,7 @@ const Home = () => {
         </section>
 
 
-        <section className="bg-secondarygray py-10 container mx-auto">
+        <section className="bg-secondarygray py-10 w-[90%] xl:w-[98%]  mx-auto">
           <div className="w-full text-black">
             <h2 className="text-3xl xl:text-5xl font-normal text-center capitalize ">
               What Our <span className="text-mainbtn">Client's Say</span>
@@ -410,7 +412,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="py-10 xl:py-20 bg container mx-auto">
+        <section className="py-10 xl:py-20 bg w-[90%] xl:w-[98%]  mx-auto mx-auto">
           <Faq faqData={faqData} />
         </section>
 
@@ -471,7 +473,7 @@ const Home = () => {
 
             {/* Content container with staggered animations */}
             <motion.div
-              className="z-20 relative text-center flex flex-col gap-2 container mx-auto"
+              className="z-20 relative text-center flex flex-col gap-2 w-[90%] xl:w-[98%]   mx-auto"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false }}
@@ -496,7 +498,7 @@ const Home = () => {
               </motion.h4>
 
               <motion.p
-                className="text-xs md:text-sm w-3/4 mx-auto"
+                className="text-xs md:text-sm w-3/4 pb-2 mx-auto"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }
