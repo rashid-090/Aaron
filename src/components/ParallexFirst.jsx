@@ -72,6 +72,7 @@ const ParallaxFixedBg = ({ image, title, subTitle, description }) => {
                 <p className="text-sm text-left md:text-center">{description}</p>
               </div>
             )}
+            
           </div>
         </div>
       </motion.div>
